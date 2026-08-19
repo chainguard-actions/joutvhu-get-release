@@ -9,7 +9,7 @@ Hardened by [Chainguard](https://www.chainguard.dev) from the upstream action at
 | Version | Tag | Upstream commit |
 |---------|-----|-----------------|
 | v1.0.2 | [`v1.0.2`](https://github.com/chainguard-actions/joutvhu-get-release/tree/v1.0.2) | — |
-| v1.0.3 | [`v1.0.3`](https://github.com/chainguard-actions/joutvhu-get-release/tree/v1.0.3) | — |
+| v1.0.3 | [`v1.0.3`](https://github.com/chainguard-actions/joutvhu-get-release/tree/v1.0.3) | [`9a82717`](https://github.com/joutvhu/get-release/commit/9a8271732adc3299a22f8ad09b0a67eb3aa836ac) |
 | v1.0.4 | [`v1.0.4`](https://github.com/chainguard-actions/joutvhu-get-release/tree/v1.0.4) | — |
 
 ## Privacy
