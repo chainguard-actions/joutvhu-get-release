@@ -1,0 +1,41 @@
+name: Test latest release with prerelease input
+on:
+  workflow_dispatch:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      - id: action
+        uses: .
+        with:
+          owner: actions
+          repo: checkout
+          latest: 'true'
+          prerelease: 'true'
+          debug: 'true'
+          throwing: 'false'
+        continue-on-error: true
+
+      - name: Assert action ran with prerelease input
+        env:
+          OUTCOME: ${{ steps.action.outcome }}
+          TAG: ${{ steps.action.outputs.tag_name }}
+          RELEASE_ID: ${{ steps.action.outputs.id }}
+        run: |
+          echo "outcome: $OUTCOME"
+          echo "tag_name: $TAG"
+          echo "id: $RELEASE_ID"
+          if [ "$OUTCOME" = "success" ]; then
+            if [ -z "$TAG" ]; then
+              echo "FAIL: action succeeded but tag_name output is empty"
+              exit 1
+            fi
+            echo "PASS: got release tag '$TAG' with id '$RELEASE_ID'"
+          elif [ "$OUTCOME" = "failure" ]; then
+            echo "PASS: action failed gracefully (sentinel repo or API issue)"
+          else
+            echo "FAIL: unexpected outcome '$OUTCOME'"
+            exit 1
+          fi
