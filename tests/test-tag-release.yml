@@ -1,0 +1,85 @@
+name: Test get release by tag
+on:
+  workflow_dispatch:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      - id: action
+        uses: .
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        with:
+          owner: actions
+          repo: checkout
+          tag_name: v4.0.0
+          debug: 'true'
+          throwing: 'true'
+
+      - name: Assert id is set
+        env:
+          ACTUAL: ${{ steps.action.outputs.id }}
+        run: |
+          echo "id: $ACTUAL"
+          if [ -z "$ACTUAL" ]; then
+            echo "FAIL: expected id to be non-empty"
+            exit 1
+          fi
+          echo "PASS: id=$ACTUAL"
+
+      - name: Assert tag_name matches
+        env:
+          ACTUAL: ${{ steps.action.outputs.tag_name }}
+        run: |
+          echo "tag_name: $ACTUAL"
+          if [ "$ACTUAL" != "v4.0.0" ]; then
+            echo "FAIL: expected tag_name to be 'v4.0.0', got '$ACTUAL'"
+            exit 1
+          fi
+          echo "PASS: tag_name=$ACTUAL"
+
+      - name: Assert name is set
+        env:
+          ACTUAL: ${{ steps.action.outputs.name }}
+        run: |
+          echo "name: $ACTUAL"
+          if [ -z "$ACTUAL" ]; then
+            echo "FAIL: expected name to be non-empty"
+            exit 1
+          fi
+          echo "PASS: name=$ACTUAL"
+
+      - name: Assert draft output is set
+        env:
+          ACTUAL: ${{ steps.action.outputs.draft }}
+        run: |
+          echo "draft: $ACTUAL"
+          if [ -z "$ACTUAL" ]; then
+            echo "FAIL: expected draft output to be set (true or false)"
+            exit 1
+          fi
+          echo "PASS: draft=$ACTUAL"
+
+      - name: Assert prerelease output is set
+        env:
+          ACTUAL: ${{ steps.action.outputs.prerelease }}
+        run: |
+          echo "prerelease: $ACTUAL"
+          if [ -z "$ACTUAL" ]; then
+            echo "FAIL: expected prerelease output to be set (true or false)"
+            exit 1
+          fi
+          echo "PASS: prerelease=$ACTUAL"
+
+      - name: Assert published_at is set
+        env:
+          ACTUAL: ${{ steps.action.outputs.published_at }}
+        run: |
+          echo "published_at: $ACTUAL"
+          if [ -z "$ACTUAL" ]; then
+            echo "FAIL: expected published_at to be non-empty"
+            exit 1
+          fi
+          echo "PASS: published_at=$ACTUAL"

@@ -1,4 +1,4 @@
-name: Test get latest release
+name: Test get latest release with pattern filter
 on:
   workflow_dispatch:
 jobs:
@@ -15,6 +15,7 @@ jobs:
           owner: actions
           repo: checkout
           latest: 'true'
+          pattern: 'v4\.'
           debug: 'true'
           throwing: 'true'
 
@@ -29,7 +30,7 @@ jobs:
           fi
           echo "PASS: id=$ACTUAL"
 
-      - name: Assert tag_name is set
+      - name: Assert tag_name matches pattern v4.*
         env:
           ACTUAL: ${{ steps.action.outputs.tag_name }}
         run: |
@@ -38,30 +39,19 @@ jobs:
             echo "FAIL: expected tag_name to be non-empty"
             exit 1
           fi
-          echo "PASS: tag_name=$ACTUAL"
+          if ! echo "$ACTUAL" | grep -qE '^v4\.'; then
+            echo "FAIL: expected tag_name to match v4.* pattern, got '$ACTUAL'"
+            exit 1
+          fi
+          echo "PASS: tag_name=$ACTUAL matches v4.* pattern"
 
-      - name: Assert html_url is set
+      - name: Assert assets_url is set
         env:
-          ACTUAL: ${{ steps.action.outputs.html_url }}
+          ACTUAL: ${{ steps.action.outputs.assets_url }}
         run: |
-          echo "html_url: $ACTUAL"
+          echo "assets_url: $ACTUAL"
           if [ -z "$ACTUAL" ]; then
-            echo "FAIL: expected html_url to be non-empty"
+            echo "FAIL: expected assets_url to be non-empty"
             exit 1
           fi
-          if ! echo "$ACTUAL" | grep -q "github.com"; then
-            echo "FAIL: html_url does not contain github.com"
-            exit 1
-          fi
-          echo "PASS: html_url=$ACTUAL"
-
-      - name: Assert url is set
-        env:
-          ACTUAL: ${{ steps.action.outputs.url }}
-        run: |
-          echo "url: $ACTUAL"
-          if [ -z "$ACTUAL" ]; then
-            echo "FAIL: expected url to be non-empty"
-            exit 1
-          fi
-          echo "PASS: url=$ACTUAL"
+          echo "PASS: assets_url=$ACTUAL"
