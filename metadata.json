@@ -1,7 +1,0 @@
-{
-  "owner": "joutvhu",
-  "name": "get-release",
-  "visibility": "internal",
-  "description": "Get a release by tag, latest or current release",
-  "block_publish": false
-}
