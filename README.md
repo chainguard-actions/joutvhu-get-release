@@ -6,11 +6,11 @@ Hardened by [Chainguard](https://www.chainguard.dev) from the upstream action at
 
 ## Versions
 
-| Version | Tag | Upstream commit |
-|---------|-----|-----------------|
-| v1.0.2 | [`v1.0.2`](https://github.com/chainguard-actions/joutvhu-get-release/tree/v1.0.2) | [`1446292`](https://github.com/joutvhu/get-release/commit/144629279c62511778ae157f397f35c358626160) |
-| v1.0.3 | [`v1.0.3`](https://github.com/chainguard-actions/joutvhu-get-release/tree/v1.0.3) | [`9a82717`](https://github.com/joutvhu/get-release/commit/9a8271732adc3299a22f8ad09b0a67eb3aa836ac) |
-| v1.0.4 | [`v1.0.4`](https://github.com/chainguard-actions/joutvhu-get-release/tree/v1.0.4) | [`8c3531b`](https://github.com/joutvhu/get-release/commit/8c3531bba0d249f5e7c3d7e1954d34db9edf2a90) |
+| Version | Tag | Upstream commit | Hardening report |
+|---------|-----|-----------------|------------------|
+| v1.0.2 | [`v1.0.2`](https://github.com/chainguard-actions/joutvhu-get-release/tree/v1.0.2) | [`1446292`](https://github.com/joutvhu/get-release/commit/144629279c62511778ae157f397f35c358626160) | [`HARDENING.md`](https://github.com/chainguard-actions/joutvhu-get-release/blob/v1.0.2/HARDENING.md) |
+| v1.0.3 | [`v1.0.3`](https://github.com/chainguard-actions/joutvhu-get-release/tree/v1.0.3) | [`9a82717`](https://github.com/joutvhu/get-release/commit/9a8271732adc3299a22f8ad09b0a67eb3aa836ac) | [`HARDENING.md`](https://github.com/chainguard-actions/joutvhu-get-release/blob/v1.0.3/HARDENING.md) |
+| v1.0.4 | [`v1.0.4`](https://github.com/chainguard-actions/joutvhu-get-release/tree/v1.0.4) | [`8c3531b`](https://github.com/joutvhu/get-release/commit/8c3531bba0d249f5e7c3d7e1954d34db9edf2a90) | [`HARDENING.md`](https://github.com/chainguard-actions/joutvhu-get-release/blob/v1.0.4/HARDENING.md) |
 
 ## Privacy
 
